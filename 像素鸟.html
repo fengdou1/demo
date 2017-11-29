@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.js"></script>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.scene{
+		width: 320px;
+		height: 480px;
+		margin: 0 auto;
+	}
+</style>
+<body>
+	<div class="scene">
+		<canvas id="canvas" width="320" height="480"></canvas>	
+	</div>		
+  	<img src="bg.png" alt="" style="display: none;" id="img"/>
+  	
+  	 
+	<script>
+	window.onload=function(){
+		let canvas =document.querySelector('#canvas');
+		let birdimg = document.querySelector('#img');
+		let b = new Bird(canvas,birdimg);
+		b.gamestart();
+		document.addEventListener('click',b.upbird.bind(b));
+	}
+
+
+	class Bird{
+		constructor(canvas,birdimg){
+			this.canvas=canvas;
+			this.birdimg=birdimg;
+			this.ctx=this.canvas.getContext("2d");
+			this.cw=this.canvas.width;
+			this.ch=this.canvas.height;
+			this.birdobj={x:this.cw/2,y:this.ch/2,w:37,h:30};
+			this.g=1;
+			
+			//  管道  位置(x,y) 尺寸(w,h)
+			this.column =[
+				{
+					top:{x:210,y:-1,w:60,h:200},
+					bottom:{x:210,y:320,w:60,h:300}
+				},
+				{
+					top:{x:440,y:-1,w:60,h:300},
+					bottom:{x:440,y:420,w:60,h:300}
+				}
+			]
+			
+			this.spacing =120;
+		}
+		gamestart(){
+			this.game = requestAnimationFrame(this.draw.bind(this))
+		}
+		draw(){
+			let flag = false;
+			this.ctx.clearRect(0,0,this.cw,this.ch);
+			// 鸟  
+			this.drawbird(); 
+			// 管道
+			for(let i=0;i<this.column.length;i++){
+				let column=this.column[i];
+				column.top.x-=1;
+				column.bottom.x-=1;
+				this.drawcolumn(column);
+				//  判断 鸟和管道
+				if(this.isImpact(this.birdobj,column.top) || this.isImpact(this.birdobj,column.bottom)){
+					flag= true;
+				}				
+				// 判断管道利卡页面，放置到右边
+				if(column.top.x<=-column.top.w){
+					column.top.x=400;
+					column.top.h=Math.random()*200+20;
+					
+					column.bottom.x=400;
+					// 位置
+					column.bottom.y=column.top.h+this.spacing;
+					column.bottom.h=this.ch-column.top.h-this.spacing;
+				}
+			}
+			if(flag){
+				return;
+			}
+			if(this.birdobj.y > this.ch-this.birdobj.h || this.birdobj.y <0){
+				return;
+			}
+			this.game = requestAnimationFrame(this.draw.bind(this));
+		}
+		isImpact(birdobj,colum){
+			if(birdobj.x >= colum.x && birdobj.x>=colum.x+colum.w){
+				return false;
+			}else if(birdobj.x <= colum.x && birdobj.x + birdobj.w <= colum.x){
+				return false;
+			}else if(birdobj.y >= colum.y && birdobj.y >= colum.y + colum.h){
+				return false;
+			}else if(birdobj.y <= colum.y && birdobj.y + birdobj.h <= colum.y){
+				return false;
+			}
+			return true;
+		}
+		drawcolumn(column){
+			//  管道边缘 { top:{},bottom{}}
+			let edgew=8,edgeh=11;
+			for(let i in column){
+				let v=column[i];
+				this.ctx.save();
+				this.ctx.strokeStyle = '#555';
+				this.ctx.strokeRect(v.x,v.y,v.w,v.h);
+				if(i=='top'){
+					this.ctx.translate(v.x-edgew,v.y+v.h);
+				}else{
+					this.ctx.translate(v.x-edgew,v.y-edgeh);
+				}
+				
+				this.ctx.strokeRect(0,0,v.w + edgew*2,edgeh);
+				this.ctx.restore();
+			}
+		}
+		drawbird(){
+			this.g+=0.05;
+			this.birdobj.y+=this.g*this.g;
+			this.ctx.drawImage(this.birdimg,this.birdobj.x,this.birdobj.y,this.birdobj.w,this.birdobj.h)
+		}
+		
+		upbird(){
+			this.birdobj.y-=20;
+			this.g=1;
+		}
+	}
+	
+
+
+ 
+	</script>
+</body>
+</html>	
