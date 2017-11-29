@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+	<style>
+		#q{
+			width: 300px;
+			height: 30px;
+			padding: 5px;
+			border: 1px solid red;
+			font-size: 16px;
+
+		}
+		#ul1{
+			border: 1px solid black;
+			width: 310px;
+			margin: 0;
+			padding: 0; 
+			display: none;
+		}
+		li a{
+			line-height: 30px;
+			padding: 5px ;
+			text-align: center;
+			text-decoration: none;
+			color: black;
+			display: block;
+		}
+		li a:hover{
+			color: white;
+			background: skyblue;
+		}
+	</style>
+	<script>
+	function miaov(data){
+		var oUL=document.getElementById('ul1'); 
+ 		var html='';
+		if(data.s.length){
+			oUL.style.display='block';
+			for(let i=0;i<data.s.length;i++){
+				html +='<li><a target="_blank" href="https://www.baidu.com/s?wd='+data.s[i]+'">'+data.s[i]+'</a></li>';
+			}
+			oUL.innerHTML = html;
+		} 
+	}
+		window.onload =function(){
+			var oQ =document.getElementById('q');
+			var oUL=document.getElementById('ul1'); 
+		
+		oQ.onkeyup=function(){
+			if(this.value !=''){
+				var oScript =document.createElement('script');
+				oScript.src =`
+https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${this.value}&cb=miaov `;
+				document.body.appendChild(oScript)
+			}else{
+				oUL.style.display='none';
+			}
+		}
+	}
+
+	</script>
+<body>
+	<input type="text" id="q">
+	<ul id="ul1">
+		<li><a href="">111111</a></li>
+		<li><a href="">111111</a></li>
+		<li><a href="">111111</a></li>
+		<li><a href="">111111</a></li>
+ 
+	</ul>
+</body>
+</html>

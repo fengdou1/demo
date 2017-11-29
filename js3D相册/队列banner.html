@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		body{
+			overflow: hidden;
+			background: #000;			
+			background: url('img/bj.jpg') no-repeat center/cover;
+			background-size: 100% 100%;
+		}
+		#box{
+			width: 100%;
+			height: 100%; 
+			perspective: 800px;
+		}
+		#wrap{
+			width: 133px;
+			height: 200px;
+			border: 1px solid #000;
+			margin: 150px auto;
+			position: relative;
+			transform-style: preserve-3d;  
+			transform: rotateX(-10deg) rotateY(0deg);
+			transition: 0.5s;
+		}
+		#wrap>img{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			transform: rotateY(0deg);
+		}
+ 
+	</style>
+</head>
+<body> 
+	<div id="box">
+		<div id="wrap"> 
+			<img src="img/cjys_04.jpg" alt="">
+			<img src="img/cjys_05.jpg" alt="">
+			<img src="img/cjys_06.jpg" alt="">
+			<img src="img/cjys_07.jpg" alt="">
+			<img src="img/cjys_13.jpg" alt="">
+ 
+		</div>
+	</div> 
+	<script src="jquery-3.2.1.js"></script>
+	<script>
+	$(function(){ 
+ 		let oImg = $('#wrap>img');
+ 		let oWarp = $('div#wrap');
+ 		let xin = $('.xin>img');
+
+ 		let Deg = 360 / oImg.length; 
+ 		Array.prototype.forEach.call(oImg,function(el,index){
+ 			 el.style.transform = 'rotateY('+Deg*index+'deg) translateZ(350px)';
+ 			 el.style.zIndex=-index;
+ 			  
+ 			 el.style.transition='transform 1s '+index*0.1+'s';
+ 		});
+ 		
+ 		let nowX = 0,nowY = 0, 
+ 			lastX= 0,last = 0,
+ 			minusX=0,minuY=0,
+ 			roX= -10, roY =0;
+
+ 		$(document).mousedown(function(ev){
+			lastX = ev.clientX;lastY = ev.clientY;
+			$(this).mousemove(function(ev){
+				nowX = ev.clientX;
+ 				nowY = ev.clientY;
+
+ 				minusX = nowX- lastX;
+ 				minusY = nowY- lastY;
+
+ 				roY +=minusX;roX -=minusY;
+ 				
+ 				oWarp.css('transform',`rotateX(${roX}deg) rotateY(${roY}deg)`)
+ 				lastX =nowX;
+ 				lastY =nowY;
+			});
+			$(this).mouseup(function(){
+				$(this).unbind('mousemove');
+				$(this).unbind('mouseup');
+		
+			});
+ 		});	  
+ 		setTimeout(function(){
+			setInterval(move, 100);
+ 		}, 2000)
+ 		
+
+ 		function move(){
+ 			oWarp.css('transform',`rotateX(${roX}deg) rotateY(${roY+=1}deg)`);
+ 		}
+
+ 	})
+	</script>
+</body>
+</html>

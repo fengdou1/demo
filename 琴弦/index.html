@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="tween.js"></script>
+	<style>
+		#list{
+			width: 362px;
+			margin: 0 auto;
+			padding: 0;
+			list-style: none;
+		}
+		#list li{
+			height: 30px;
+			 
+			font: 12px/30px "宋体";
+			 
+			position: relative;
+		}
+		#list li span{
+			width: 12px;
+			height: 12px;
+			line-height: 12px;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var olist= document.getElementById('list');
+			var ali = olist.getElementsByTagName('li');
+			var liheight=ali[0].offsetHeight;
+			for(var i=0;i<ali.length;i++){
+				var sHtml = ali[i].innerHTML;
+				 
+				ali[i].innerHTML="";
+				for(var j=0;j<sHtml.length;j++){
+					ali[i].innerHTML += "<span>"+sHtml[j]+"</span>";
+				}
+				var span = ali[i].children; 
+			 
+				for(var j=0;j<sHtml.length;j++){
+					span[j].style.left=span[j].offsetLeft+"px";
+					span[j].style.top=span[j].offsetTop+"px";
+					span[j].starttop=span[j].offsetTop;
+				}
+				for(var j=0;j<sHtml.length;j++){
+					span[j].style.position="absolute";
+				
+					(function (span,nub2){
+						var start=0;
+						var spanheight =span[0].offsetHeight;
+						span[nub2].onmouseover=function(e){
+							start = e.clientY;
+						}
+						span[nub2].onmousemove=function(e){
+							var cha = e.clientY-start;
+							var nub =cha>0?1:-1;
+							if(this.starttop+cha>=0 && this.starttop+cha<(liheight-spanheight)){
+								this.style.top=this.starttop+cha+"px";
+								for(var j=0;j<span.length;j++){
+									if(Math.abs(cha)>Math.abs(nub2-j)){ 
+										span[j].style.top=span[j].starttop+(Math.abs(cha)-Math.abs(nub2-j))*nub+"px";
+									}else{
+										span[j].style.top=span[j].starttop+"px";
+									}
+								}
+							
+							}
+						}
+						span[nub2].onmouseout=function(e){
+							for(var j=0;j<span.length;j++){
+								starMove(span[j],{top:span[j].starttop},500,"elasticOut");
+							}
+							 
+						}
+					})(span,j);
+					 
+				}
+			}
+		}
+	</script>
+	<body>
+		
+		<ul id="list">
+			<li>1苏芒：为热爱而活。苏芒：为热爱而活。</li>
+			<li>2苏芒：为热爱而活。苏芒：为热爱而活。</li>
+			<li>3苏芒：为热爱而活。苏芒：为热爱而活。</li>
+			<li>4苏芒：为热爱而活。苏芒：为热爱而活。</li>
+			<li>5苏芒：为热爱而活。苏芒：为热爱而活。</li>
+		</ul>
+	</body>
+</html>
