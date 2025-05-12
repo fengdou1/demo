@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
   <Id>a3131f4a-3293-4fd2-9479-531caa198c86</Id>
-  <Version>1.0.0.1</Version>
-  <ProviderName>Contoso</ProviderName>
+  <Version>1.0.1.0</Version>
+  <ProviderName>Contoso1</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="myfirstaddin"/>
+  <DisplayName DefaultValue="Copilot Add-in"/>
   <Description DefaultValue="A template to get started."/>
-  <IconUrl DefaultValue="http://1.94.3.62:8082/assets/icon-64.png"/>
-  <HighResolutionIconUrl DefaultValue="http://1.94.3.62:8082/assets/icon-128.png"/>
-  <SupportUrl DefaultValue="http://1.94.3.62:8082/taskpane.html"/>
+  <IconUrl DefaultValue="https://fengdou1.github.io/demo/copilot//assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://fengdou1.github.io/demo/copilot//assets/icon-128.png"/>
+  <SupportUrl DefaultValue="https://fengdou1.github.io/demo/copilot//taskpane.html"/>
   <AppDomains>
-    <AppDomain>https://www.contoso.com</AppDomain>
+    <AppDomain>https://fengdou1.github.io</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Mailbox"/>
@@ -23,7 +23,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="http://1.94.3.62:8082/taskpane.html"/>
+        <SourceLocation DefaultValue="https://fengdou1.github.io/demo/copilot//taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -70,13 +70,13 @@
       </Hosts>
       <Resources>
         <bt:Images>
-          <bt:Image id="Icon.16x16" DefaultValue="http://1.94.3.62:8082/assets/icon-16.png"/>
-          <bt:Image id="Icon.32x32" DefaultValue="http://1.94.3.62:8082/assets/icon-32.png"/>
-          <bt:Image id="Icon.80x80" DefaultValue="http://1.94.3.62:8082/assets/icon-80.png"/>
+          <bt:Image id="Icon.16x16" DefaultValue="https://fengdou1.github.io/demo/copilot//assets/icon-16.png"/>
+          <bt:Image id="Icon.32x32" DefaultValue="https://fengdou1.github.io/demo/copilot//assets/icon-32.png"/>
+          <bt:Image id="Icon.80x80" DefaultValue="https://fengdou1.github.io/demo/copilot//assets/icon-80.png"/>
         </bt:Images>
         <bt:Urls>
-          <bt:Url id="Commands.Url" DefaultValue="http://1.94.3.62:8082/commands.html"/>
-          <bt:Url id="Taskpane.Url" DefaultValue="http://1.94.3.62:8082/taskpane.html"/>
+          <bt:Url id="Commands.Url" DefaultValue="https://fengdou1.github.io/demo/copilot//commands.html"/>
+          <bt:Url id="Taskpane.Url" DefaultValue="https://fengdou1.github.io/demo/copilot//taskpane.html"/>
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="GroupLabel" DefaultValue="Contoso Add-in"/>
