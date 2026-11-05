@@ -21,7 +21,7 @@
     DefaultValue="https://fengdou1.github.io/demo/copilot//taskpane.html"/>
 
   <AppDomains>
-    <AppDomain>https://fengdou1.github.io/demo/copilot/</AppDomain>
+    <AppDomain>https://fengdou1.github.io</AppDomain>
   </AppDomains>
 
   <Hosts>
