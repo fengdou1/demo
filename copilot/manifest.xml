@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
-  <Id>a3131f4a-3293-4fd2-9479-531caa198c86</Id>
-  <Version>1.0.1.5</Version>
-  <ProviderName>Contoso1</ProviderName>
+  <Id>a3131f4a-3293-4fd2-9479-531caa198c87</Id>
+  <Version>2.0.2.6</Version>
+  <ProviderName>Co222ntoso1333</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Copilot Add-in"/>
+  <DisplayName DefaultValue="Copilot Add-in 3"/>
   <Description DefaultValue="New1104 A template to get started."/>
   <IconUrl DefaultValue="https://fengdou1.github.io/demo/copilot//assets/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://fengdou1.github.io/demo/copilot//assets/icon-128.png"/>
